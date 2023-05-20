@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         Employee[] employees = new Employee[]{
-                new Employee("employee1", 1, 300000),
+                new Employee("employee1", 1, 30),
                 new Employee("employee2", 2, 231512),
                 new Employee("employee3", 3, 30232570),
                 new Employee("employee4", 4, 1234),
@@ -22,6 +22,8 @@ public class Main {
         System.out.println("Сотрудник с максимальной зарлатой: " + getEmployeeWithMaxSalary(employees));
         System.out.println("Средняя зарлпата: " + getAvgSalary(employees));
         printAllFullNames(employees);
+
+        System.out.println(getEmployeeWithMaxSalaryInDepartment(employees, 1));
     }
 
     public static void printAll(Employee[] employees) {
@@ -37,7 +39,6 @@ public class Main {
         }
         return result;
     }
-
 
     public static Employee getEmployeeWithMinSalary(Employee[] employees) {
         Employee employeeWithMinSalary = employees[0];
@@ -68,4 +69,18 @@ public class Main {
             System.out.println(e.getFullName());
         }
     }
+
+//    Получить в качестве параметра номер отдела (1–5) и найти сотрудника с минимальной зарплатой
+
+    public static Employee getEmployeeWithMaxSalaryInDepartment(Employee[] employees, int department) {
+        Employee employeeWithMaxSalary = null;
+        for (Employee e : employees) {
+            if (e.getDepartment() == department
+                    && (employeeWithMaxSalary == null || e.getSalary() > employeeWithMaxSalary.getSalary())) {
+                employeeWithMaxSalary = e;
+            }
+        }
+        return employeeWithMaxSalary;
+    }
 }
+
